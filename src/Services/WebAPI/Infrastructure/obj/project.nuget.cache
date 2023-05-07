@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "bkr3JgwAUNnsjJXx9KosYb3OeOoBVn5qhHDGfBh0kqMC8TxfX5rzc7F1ksrN4/h9A9AiNrPk7d+aGxnxRzT2lA==",
+  "success": true,
+  "projectFilePath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Infrastructure/Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "/Users/asher/.nuget/packages/fluentvalidation/11.5.2/fluentvalidation.11.5.2.nupkg.sha512",
+    "/Users/asher/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.2/fluentvalidation.dependencyinjectionextensions.11.5.2.nupkg.sha512",
+    "/Users/asher/.nuget/packages/mediatr/12.0.1/mediatr.12.0.1.nupkg.sha512",
+    "/Users/asher/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/asher/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
