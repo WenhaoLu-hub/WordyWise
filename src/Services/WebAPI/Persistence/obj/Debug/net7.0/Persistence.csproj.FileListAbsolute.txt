@@ -1,0 +1,12 @@
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/bin/Debug/net7.0/Persistence.deps.json
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/bin/Debug/net7.0/Persistence.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/bin/Debug/net7.0/Persistence.pdb
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.csproj.AssemblyReference.cache
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.AssemblyInfoInputs.cache
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.AssemblyInfo.cs
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.csproj.CoreCompileInputs.cache
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/refint/Persistence.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.pdb
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/ref/Persistence.dll

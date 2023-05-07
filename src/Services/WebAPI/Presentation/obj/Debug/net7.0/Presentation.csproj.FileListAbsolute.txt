@@ -1,0 +1,17 @@
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/bin/Debug/net7.0/Presentation.deps.json
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/bin/Debug/net7.0/Presentation.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/bin/Debug/net7.0/Presentation.pdb
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/bin/Debug/net7.0/Application.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/bin/Debug/net7.0/Domain.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/bin/Debug/net7.0/Application.pdb
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/bin/Debug/net7.0/Domain.pdb
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/Presentation.csproj.AssemblyReference.cache
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/Presentation.GeneratedMSBuildEditorConfig.editorconfig
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/Presentation.AssemblyInfoInputs.cache
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/Presentation.AssemblyInfo.cs
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/Presentation.csproj.CoreCompileInputs.cache
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/Presentation.csproj.CopyComplete
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/Presentation.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/refint/Presentation.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/Presentation.pdb
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Presentation/obj/Debug/net7.0/ref/Presentation.dll
