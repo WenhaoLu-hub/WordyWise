@@ -570,6 +570,9 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "MediatR": "12.0.1"
+        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },

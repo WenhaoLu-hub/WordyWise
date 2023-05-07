@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qfah9n3f1s0CjFblbIOMoJgFvSVEhrkxP8NDwdsueDC5vENysw8dvoH6Ns7Bd3peAgy4JNtcgZwntrIpXIJn2w==",
+  "dgSpecHash": "+aFKGN7mCXYIEhqWGdirgt0c1DLxZDeN4eoTM7cw51fkpp79NFTjgi2vpc1VDBzwf38o8GMelB5ylRsfM1v4NA==",
   "success": true,
   "projectFilePath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Domain/Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/asher/.nuget/packages/mediatr/12.0.1/mediatr.12.0.1.nupkg.sha512",
+    "/Users/asher/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/asher/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
