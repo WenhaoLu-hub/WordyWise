@@ -18,7 +18,7 @@ public abstract class BaseEntity :IEquatable<BaseEntity>
         return left is not null && right is not null && left.Equals(right);
     }
 
-    public static bool operator !=(BaseEntity left, BaseEntity right)
+    public static bool operator !=(BaseEntity? left, BaseEntity right)
     {
         return !(left == right);
     }

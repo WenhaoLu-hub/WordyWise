@@ -1,5 +1,6 @@
 using Application;
 using Infrastructure;
+using Persistence;
 using Presentation;
 using Serilog;
 
@@ -15,7 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services
     .AddApplication()
     .AddInfrastructure()
-    .AddPresentation();
+    .AddPresentation()
+    .AddPersistence();
 
 builder.Host.UseSerilog(((context, configuration) =>
 {
