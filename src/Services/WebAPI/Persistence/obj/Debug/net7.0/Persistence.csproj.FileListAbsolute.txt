@@ -10,3 +10,8 @@
 /Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/refint/Persistence.dll
 /Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.pdb
 /Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/ref/Persistence.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/bin/Debug/net7.0/Persistence.runtimeconfig.json
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/bin/Debug/net7.0/Domain.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/bin/Debug/net7.0/Domain.pdb
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.csproj.CopyComplete
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/Persistence/obj/Debug/net7.0/Persistence.genruntimeconfig.cache

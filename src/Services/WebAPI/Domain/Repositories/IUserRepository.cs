@@ -9,7 +9,9 @@ public interface IUserRepository
     
     Task<User> GetByEmailAsync(Email email, CancellationToken cancellationToken = default);
 
-    Task<User> IsEmailUniqueAsync(Email email, CancellationToken cancellationToken = default);
+    Task<bool> IsEmailUniqueAsync(Email email, CancellationToken cancellationToken = default);
+
+    Task<bool> IsPhoneNumberUniqueAsync(PhoneNumber phone, CancellationToken cancellationToken = default);
 
     void Add(User user);
 

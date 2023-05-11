@@ -17,23 +17,23 @@ public class User : AggregateRoot
     
     public DateTime? ModifiedOnUtc { get; private set; }
 
+    private User() //ORM
+    {
+    }
 
-    private User(Guid id, Name name, string phoneNumber, string? passwordHash, string email) : base(id)
+    private User(Guid id, Name name, string phoneNumber) : base(id)
     {
         Name = name;
         PhoneNumber = phoneNumber;
-        PasswordHash = passwordHash;
-        Email = email;
         CreatedOnUtc = DateTime.UtcNow;
     }
 
-    public static User Create(Guid id,
+    public static User Create(
         Name name,
-        string phoneNumber,
-        string? passwordHash,
-        string email)
+        string phoneNumber)
     {
-        var user = new User(id, name, phoneNumber, passwordHash, email);
+        
+        var user = new User(Guid.NewGuid(), name, phoneNumber);
         
         //raise domain event here if needed
 
