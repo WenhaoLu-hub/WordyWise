@@ -21,15 +21,18 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
     public async Task<Result<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var nameResult = Name.Create(request.Name);
+        // Mock Data
         var phoneNumber = new PhoneNumber("+86", request.PhoneNumber);
-        var isPhoneNumberUniqueAsync = await _userRepository.IsPhoneNumberUniqueAsync(phoneNumber,cancellationToken);
-        if (!isPhoneNumberUniqueAsync)
+        if (!await _userRepository.IsPhoneNumberUniqueAsync(phoneNumber,cancellationToken))
         {
             return Result.Failure<Guid>(new Error("User.DuplicatePhone","Phone number already exist"));
         }
-        var user = User.Create(nameResult.Value,request.PhoneNumber);
+        var user = User.Create(nameResult.Value, phoneNumber);
+        
         _userRepository.Add(user);
+        
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+        
         return user.Id;
 
     }

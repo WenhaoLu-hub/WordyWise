@@ -8,8 +8,8 @@ namespace Domain.Entities.UserAggregate;
 public class User : AggregateRoot
 {
     public Name Name { get; private set; }
-    public string Email { get; private set; }
-    public string PhoneNumber { get; private set; }
+    public Email Email { get; private set; }
+    public PhoneNumber PhoneNumber { get; private set; }
     public ICollection<UserRole> UserRoles { get; private set; } = new List<UserRole>();
     public string? PasswordHash { get; private set; }
     
@@ -21,7 +21,7 @@ public class User : AggregateRoot
     {
     }
 
-    private User(Guid id, Name name, string phoneNumber) : base(id)
+    private User(Guid id, Name name, PhoneNumber phoneNumber) : base(id)
     {
         Name = name;
         PhoneNumber = phoneNumber;
@@ -30,7 +30,7 @@ public class User : AggregateRoot
 
     public static User Create(
         Name name,
-        string phoneNumber)
+        PhoneNumber phoneNumber)
     {
         
         var user = new User(Guid.NewGuid(), name, phoneNumber);
@@ -62,7 +62,7 @@ public class User : AggregateRoot
         throw new NotImplementedException();
     }
     
-    public void ChangePhoneNumber(string phoneNumber)
+    public void ChangePhoneNumber(PhoneNumber phoneNumber)
     {
         PhoneNumber = phoneNumber;
     }

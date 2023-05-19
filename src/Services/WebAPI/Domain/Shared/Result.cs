@@ -8,7 +8,7 @@ public class Result
     
     public bool IsFailure => !IsSuccess;
     
-    public Error error { get; }
+    public Error Error { get; }
 
     protected Result(bool isSuccess, Error? error)
     {

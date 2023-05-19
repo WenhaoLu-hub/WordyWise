@@ -1,4 +1,6 @@
+using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Repositories;
 
 namespace Persistence;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,8 @@ public static class DependencyInjection
             {
                 builder.UseSqlServer(dbConnection);
             });
+        services.AddScoped<IUserRepository,UserRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         return services;
     }
 }

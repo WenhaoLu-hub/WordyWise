@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BW768uIRiYoMPKmnT3GuH5/IRF/EE2M4NJGjgcm7p+zDkPgObPttg0p61Fkj+02pxt2OUbgIM87ywVNrKw+SXA==",
+  "dgSpecHash": "3ldG1ZGFQVUml7plFZMUdEV64qjK70qMv9+qmf53X3iRNp/xkg7q9atqqT187t0HaPnQMWjmgWXkYPpFtAaqKg==",
   "success": true,
   "projectFilePath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Application/Application.csproj",
   "expectedPackageFiles": [
