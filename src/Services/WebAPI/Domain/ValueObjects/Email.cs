@@ -38,7 +38,7 @@ public sealed class Email : ValueObject
         return new Email(email);
     }
 
-    protected override IEnumerable<object> GetAtomicValues()
+    public override IEnumerable<object> GetAtomicValues()
     {
         yield return Value;
     }

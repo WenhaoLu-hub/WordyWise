@@ -1,22 +1,30 @@
 using Domain.Primitives;
+using Domain.Shared;
 
 namespace Domain.ValueObjects;
 
-public class PhoneNumber : ValueObject
+public sealed class PhoneNumber : ValueObject
 {
-    public string CountryCode;
-    public string Number;
+    public string Value { get; private set; }
+    public static int MaxLength = 15;
 
-    public static int MaxLength;
-
-    public PhoneNumber(string countryCode, string number)
+    private PhoneNumber(string value)
     {
-        CountryCode = countryCode;
-        Number = number;
+        Value = value;
     }
 
-    protected override IEnumerable<object> GetAtomicValues()
+    public static Result<PhoneNumber> Create(string value)
     {
-        throw new NotImplementedException();
+        if (value.Length > MaxLength)
+        {
+            return Result.Failure<PhoneNumber>(new Error("PhoneNumber.TooLong","PhoneNumber is too long"));
+        }
+
+        return new PhoneNumber(value);
+    }
+
+    public override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Value;
     }
 }

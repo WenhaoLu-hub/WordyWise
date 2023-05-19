@@ -14,13 +14,16 @@ public class Result
     {
         if (isSuccess && error != Error.None)
         {
-            throw new InvalidOperationException();
+            throw new InvalidDataException();
         }
 
         if (!isSuccess && error == Error.None)
         {
-            throw new InvalidOperationException();
+            throw new InvalidDataException();
         }
+
+        IsSuccess = isSuccess;
+        Error = error;
     }
 
     public static Result Success() => new Result(true,Error.None);

@@ -5,7 +5,7 @@ namespace Domain.ValueObjects;
 
 public sealed class Name : ValueObject
 {
-    public string Value { get; private set; }
+    public string Value { get; }
 
     public const int MaxLength = 20;
 
@@ -29,7 +29,7 @@ public sealed class Name : ValueObject
         return new Name(name);
     }
 
-    protected override IEnumerable<object> GetAtomicValues()
+    public override IEnumerable<object> GetAtomicValues()
     {
         yield return Value;
     }

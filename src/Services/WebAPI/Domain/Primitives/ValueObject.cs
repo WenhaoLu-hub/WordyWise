@@ -2,7 +2,7 @@ namespace Domain.Primitives;
 
 public abstract class ValueObject : IEquatable<ValueObject>
 {
-    protected abstract IEnumerable<object> GetAtomicValues();
+    public abstract IEnumerable<object> GetAtomicValues();
     
     public bool Equals(ValueObject? other)
     {
