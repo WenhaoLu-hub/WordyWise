@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{50D8A9BE-913E-44C1-9B37-B1058EB4B871}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.Test", "Architecture.Test\Architecture.Test.csproj", "{6298D8CB-38FC-479F-B45D-ACF31DD450CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,12 @@ Global
 		{CE6752B6-823A-4B42-87E8-DB3D5E10C5BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE6752B6-823A-4B42-87E8-DB3D5E10C5BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE6752B6-823A-4B42-87E8-DB3D5E10C5BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6298D8CB-38FC-479F-B45D-ACF31DD450CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6298D8CB-38FC-479F-B45D-ACF31DD450CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6298D8CB-38FC-479F-B45D-ACF31DD450CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6298D8CB-38FC-479F-B45D-ACF31DD450CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6298D8CB-38FC-479F-B45D-ACF31DD450CB} = {50D8A9BE-913E-44C1-9B37-B1058EB4B871}
 	EndGlobalSection
 EndGlobal

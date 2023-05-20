@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9fc770f4_002D27c7_002D412f_002D96ef_002De9030c76c1ab/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Domain_Should_Not_HaveDependencyOnOtherProjects" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Domain_Should_Not_HaveDependencyOnOtherProjects&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Application_Should_Not_HaveDependencyOnOtherProjects&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Infrastructure_Should_Not_HaveDependencyOnOtherProjects&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Persistence_Should_Not_HaveDependencyOnOtherProjects&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Handler_Should_Not_HaveDependencyOnDomain&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Controller_Should_Have_DependencyOnMediatR&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

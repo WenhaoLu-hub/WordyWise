@@ -1,5 +1,4 @@
 using Application.Abstractions.Messaging;
-using Application.Users.Commands;
 using Domain.Entities.UserAggregate;
 using Domain.Repositories;
 using Domain.Shared;

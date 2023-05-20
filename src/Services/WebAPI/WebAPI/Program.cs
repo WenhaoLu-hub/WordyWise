@@ -26,7 +26,7 @@ builder.Host.UseSerilog(((context, configuration) =>
 builder
     .Services
     .AddControllers()
-    .AddApplicationPart(Presentation.AssemblyReference.Assembly);
+    .AddApplicationPart(Presentation.AssemblyReference.Assembly());
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
