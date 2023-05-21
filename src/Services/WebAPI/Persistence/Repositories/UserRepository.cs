@@ -14,9 +14,9 @@ public class UserRepository : IUserRepository
         _myContext = myContext;
     }
 
-    public Task<User> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return _myContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+        return await _myContext.Set<User>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
     public Task<User> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
@@ -33,7 +33,7 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> IsPhoneNumberUniqueAsync(PhoneNumber phone, CancellationToken cancellationToken = default)
     {
-        var user = await _myContext.Users.FirstOrDefaultAsync(x=>x.PhoneNumber == phone, cancellationToken);
+        var user = await _myContext.Set<User>().FirstOrDefaultAsync(x=>x.PhoneNumber == phone, cancellationToken);
         if (user != null)
         {
             return false;
@@ -41,9 +41,9 @@ public class UserRepository : IUserRepository
         return true;
     }
 
-    public void Add(User user)
+    public void Add(User? user)
     {
-        _myContext.Users.Add(user);
+        _myContext.Set<User>().Add(user);
     }
 
     public void Update(User user)

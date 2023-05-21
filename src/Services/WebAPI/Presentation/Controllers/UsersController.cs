@@ -6,14 +6,14 @@ using Presentation.Abstractions;
 
 namespace Presentation.Controllers;
 
-[Route("api/members")]
-public sealed class UserController : ApiController
+[Route("api/users")]
+public sealed class UsersController : ApiController
 {
-    public UserController(ISender sender) : base(sender)
+    public UsersController(ISender sender) : base(sender)
     {
     }
 
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetUserById(Guid id, CancellationToken cancellationToken)
     {
         var query = new GetUserByIdQuery(id);

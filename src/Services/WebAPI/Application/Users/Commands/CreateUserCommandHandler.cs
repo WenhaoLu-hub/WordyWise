@@ -1,5 +1,6 @@
 using Application.Abstractions.Messaging;
 using Domain.Entities.UserAggregate;
+using Domain.Errors;
 using Domain.Repositories;
 using Domain.Shared;
 using Domain.ValueObjects;
@@ -36,7 +37,7 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
         
         if (await _userRepository.IsPhoneNumberUniqueAsync(phoneNumber.Value,cancellationToken))
         {
-            return Result.Failure<Guid>(new Error("User.DuplicatePhone","Phone number already exist"));
+            return Result.Failure<Guid>(DomainErrors.User.DuplicatePhoneNumber);
         }
         var user = User.Create(nameResult.Value, phoneNumber.Value);
         

@@ -8,7 +8,7 @@ namespace Domain.Entities.UserAggregate;
 public class User : AggregateRoot
 {
     public Name Name { get; private set; }
-    public Email Email { get; private set; }
+    public Email? Email { get; private set; }
     public PhoneNumber PhoneNumber { get; private set; }
     public ICollection<UserRole> UserRoles { get; private set; } = new List<UserRole>();
     public string? PasswordHash { get; private set; }
@@ -28,7 +28,7 @@ public class User : AggregateRoot
         CreatedOnUtc = DateTime.UtcNow;
     }
 
-    public static User Create(
+    public static User? Create(
         Name name,
         PhoneNumber phoneNumber)
     {
