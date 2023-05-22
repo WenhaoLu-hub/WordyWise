@@ -21,21 +21,19 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
     public async Task<Result<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var nameResult = Name.Create(request.Name);
-        
-        if (!nameResult.IsSuccess)
-        {
-            return Result.Failure<Guid>(nameResult.Error);
-        }
-        
-        // Mock Data
         var phoneNumber =  PhoneNumber.Create(request.PhoneNumber);
         
-        if (!phoneNumber.IsSuccess)
-        {
-            return Result.Failure<Guid>(phoneNumber.Error);
-        }
+        // if (!nameResult.IsSuccess)
+        // {
+        //     return Result.Failure<Guid>(nameResult.Error);
+        // }
         
-        if (await _userRepository.IsPhoneNumberUniqueAsync(phoneNumber.Value,cancellationToken))
+        // if (!phoneNumber.IsSuccess)
+        // {
+        //     return Result.Failure<Guid>(phoneNumber.Error);
+        // }
+        
+        if (!await _userRepository.IsPhoneNumberUniqueAsync(phoneNumber.Value,cancellationToken))
         {
             return Result.Failure<Guid>(DomainErrors.User.DuplicatePhoneNumber);
         }

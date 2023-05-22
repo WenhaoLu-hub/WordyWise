@@ -7,5 +7,10 @@
     &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Persistence_Should_Not_HaveDependencyOnOtherProjects&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Handler_Should_Not_HaveDependencyOnDomain&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::6298D8CB-38FC-479F-B45D-ACF31DD450CB::net7.0::Architecture.Test.ArchitectureTests.Controller_Should_Have_DependencyOnMediatR&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8DC00810-D5A6-4158-B5A8-2E851A24B8AE::net7.0::WebAPI.Application.Test.User.Command.CreateUserCommandHandlerTest.Handle_Should_ReturnFailureResult_WhenEmailIsNotUnique&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8DC00810-D5A6-4158-B5A8-2E851A24B8AE::net7.0::WebAPI.Application.Test.Users.Commands.CreateUserCommandHandlerTest.Handle_Should_ReturnFailureResult_WhenPhoneNumberIsNotUnique&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8DC00810-D5A6-4158-B5A8-2E851A24B8AE::net7.0::WebAPI.Application.Test.Users.Commands.CreateUserCommandHandlerTest.Handle_Should_ReturnTrueResult_WhenPhoneNumberIsUnique&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8DC00810-D5A6-4158-B5A8-2E851A24B8AE::net7.0::WebAPI.Application.Test.Users.Commands.CreateUserCommandHandlerTest.Handle_Should_CallRepository_WhenPhoneNumberIsUnique&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8DC00810-D5A6-4158-B5A8-2E851A24B8AE::net7.0::WebAPI.Application.Test.Users.Commands.CreateUserCommandHandlerTest.Handle_Should_Not_CallUnitOfWork_WhenPhoneNumberIsNotUnique&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

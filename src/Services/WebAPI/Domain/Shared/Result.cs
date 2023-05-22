@@ -10,7 +10,7 @@ public class Result
     
     public Error Error { get; }
 
-    protected Result(bool isSuccess, Error? error)
+    protected internal Result(bool isSuccess, Error error)
     {
         if (isSuccess && error != Error.None)
         {
@@ -27,7 +27,7 @@ public class Result
     }
 
     public static Result Success() => new Result(true,Error.None);
-    public static Result<TValue> Success<TValue>(TValue? value) => new (value, true, Error.None);
+    public static Result<TValue> Success<TValue>(TValue value) => new (value, true, Error.None);
 
     public static Result Failure(Error error) => new Result(false,error);
 

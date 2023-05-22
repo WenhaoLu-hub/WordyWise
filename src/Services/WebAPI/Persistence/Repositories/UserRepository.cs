@@ -33,12 +33,7 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> IsPhoneNumberUniqueAsync(PhoneNumber phone, CancellationToken cancellationToken = default)
     {
-        var user = await _myContext.Set<User>().FirstOrDefaultAsync(x=>x.PhoneNumber == phone, cancellationToken);
-        if (user != null)
-        {
-            return false;
-        }
-        return true;
+        return !await _myContext.Set<User>().AnyAsync(x => x.PhoneNumber == phone, cancellationToken);
     }
 
     public void Add(User? user)
