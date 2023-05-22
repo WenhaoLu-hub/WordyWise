@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Persistence;
 using Persistence.Outbox;
+using Polly;
 using Quartz;
 
 namespace Infrastructure.BackgroundJobs;
@@ -39,23 +40,18 @@ public class ProcessOutboxMessageJob : IJob
                     TypeNameHandling = TypeNameHandling.All
                 }
             );
-                
-
+            
             if (domainEvent is null)
             {
                 continue;
             }
 
-            try
-            {
-                await _publisher.Publish(domainEvent, context.CancellationToken);
-                _logger.LogInformation($"published the event: {domainEvent.GetType().Name}");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Domain event publish error: {e.Message}");
-                continue;
-            }
+            var policyResult = await Policy
+                .Handle<Exception>()
+                .WaitAndRetryAsync(3,
+                    attempt => TimeSpan.FromMicroseconds(50 * attempt))
+                .ExecuteAndCaptureAsync(() => _publisher.Publish(domainEvent, context.CancellationToken));
+            outboxMessage.Error = policyResult.FinalException.ToString();
             outboxMessage.ProcessedOnUtc = DateTime.UtcNow;
         }
         

@@ -285,6 +285,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.3, )"
+            },
             "Quartz": {
               "target": "Package",
               "version": "[3.6.2, )"

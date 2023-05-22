@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TtDP4HowKeXp4jxR3s2DwfbneLPUX1mgfwGRMkRf/+JtKQHz2VafcPDulbDfwc/F3WkhWHE0iKCDDRY+7cGk5w==",
+  "dgSpecHash": "zdhjbSbr5wlCugte9zSuoyesTzXmtwvMkmV80muRi6Nw6fOCAdGkuoTxYax0Uhw+RzRInjzDu7Oe64A59Uqljg==",
   "success": true,
   "projectFilePath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -49,6 +49,7 @@
     "/Users/asher/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/asher/.nuget/packages/polly/7.2.3/polly.7.2.3.nupkg.sha512",
     "/Users/asher/.nuget/packages/quartz/3.6.2/quartz.3.6.2.nupkg.sha512",
     "/Users/asher/.nuget/packages/quartz.extensions.dependencyinjection/3.6.2/quartz.extensions.dependencyinjection.3.6.2.nupkg.sha512",
     "/Users/asher/.nuget/packages/quartz.extensions.hosting/3.6.2/quartz.extensions.hosting.3.6.2.nupkg.sha512",
