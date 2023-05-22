@@ -1,6 +1,8 @@
 using Application.Abstractions;
+using Application.Abstractions.Messaging;
 using Infrastructure.BackgroundJobs;
 using Infrastructure.Services;
+using MediatR;
 using Quartz;
 
 namespace Infrastructure;
@@ -28,6 +30,7 @@ public static class DependencyInjection
             configure.UseMicrosoftDependencyInjectionJobFactory();
         });
         services.AddQuartzHostedService();
+        services.Decorate(typeof(INotificationHandler<>), typeof(IDomainEventHandler<>));
         return services;
     }
 }

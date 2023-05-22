@@ -103,3 +103,5 @@
 /Users/asher/Projects/WordyWise/src/Services/WebAPI/WebAPI/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
 /Users/asher/Projects/WordyWise/src/Services/WebAPI/WebAPI/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/asher/Projects/WordyWise/src/Services/WebAPI/WebAPI/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/WebAPI/bin/Debug/net7.0/Polly.dll
+/Users/asher/Projects/WordyWise/src/Services/WebAPI/WebAPI/bin/Debug/net7.0/Scrutor.dll

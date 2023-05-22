@@ -194,6 +194,10 @@
             "Quartz.Extensions.Hosting": {
               "target": "Package",
               "version": "[3.6.2, )"
+            },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[4.2.2, )"
             }
           },
           "imports": [

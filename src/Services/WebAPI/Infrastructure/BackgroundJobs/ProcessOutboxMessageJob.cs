@@ -10,6 +10,7 @@ using Quartz;
 
 namespace Infrastructure.BackgroundJobs;
 
+[DisallowConcurrentExecution]
 public class ProcessOutboxMessageJob : IJob
 {
     private readonly MyContext _myContext;

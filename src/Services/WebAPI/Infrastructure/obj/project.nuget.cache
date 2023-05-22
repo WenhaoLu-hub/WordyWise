@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zdhjbSbr5wlCugte9zSuoyesTzXmtwvMkmV80muRi6Nw6fOCAdGkuoTxYax0Uhw+RzRInjzDu7Oe64A59Uqljg==",
+  "dgSpecHash": "fJVVa8QAXGKNVPJqzCafAzz/7WIY60DY+w1XUA3FaqbquSoah5XYZhNtuUfLd/FPPswnW3OyfymSSrKfaAhblg==",
   "success": true,
   "projectFilePath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "/Users/asher/.nuget/packages/microsoft.extensions.configuration.abstractions/7.0.0/microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "/Users/asher/.nuget/packages/microsoft.extensions.dependencymodel/6.0.0/microsoft.extensions.dependencymodel.6.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.extensions.fileproviders.abstractions/6.0.0/microsoft.extensions.fileproviders.abstractions.6.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.extensions.hosting.abstractions/6.0.0/microsoft.extensions.hosting.abstractions.6.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.extensions.identity.core/7.0.5/microsoft.extensions.identity.core.7.0.5.nupkg.sha512",
@@ -53,6 +54,7 @@
     "/Users/asher/.nuget/packages/quartz/3.6.2/quartz.3.6.2.nupkg.sha512",
     "/Users/asher/.nuget/packages/quartz.extensions.dependencyinjection/3.6.2/quartz.extensions.dependencyinjection.3.6.2.nupkg.sha512",
     "/Users/asher/.nuget/packages/quartz.extensions.hosting/3.6.2/quartz.extensions.hosting.3.6.2.nupkg.sha512",
+    "/Users/asher/.nuget/packages/scrutor/4.2.2/scrutor.4.2.2.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.configuration.configurationmanager/6.0.1/system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.diagnostics.diagnosticsource/5.0.0/system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
@@ -69,6 +71,7 @@
     "/Users/asher/.nuget/packages/system.resources.resourcemanager/4.3.0/system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.runtime.caching/5.0.0/system.runtime.caching.5.0.0.nupkg.sha512",
+    "/Users/asher/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.security.accesscontrol/6.0.0/system.security.accesscontrol.6.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.security.cryptography.cng/5.0.0/system.security.cryptography.cng.5.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.security.cryptography.protecteddata/6.0.0/system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
@@ -76,8 +79,8 @@
     "/Users/asher/.nuget/packages/system.security.principal.windows/5.0.0/system.security.principal.windows.5.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.text.encoding/4.3.0/system.text.encoding.4.3.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512",
-    "/Users/asher/.nuget/packages/system.text.encodings.web/4.7.2/system.text.encodings.web.4.7.2.nupkg.sha512",
-    "/Users/asher/.nuget/packages/system.text.json/4.7.2/system.text.json.4.7.2.nupkg.sha512",
+    "/Users/asher/.nuget/packages/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg.sha512",
+    "/Users/asher/.nuget/packages/system.text.json/6.0.0/system.text.json.6.0.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/Users/asher/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512"
