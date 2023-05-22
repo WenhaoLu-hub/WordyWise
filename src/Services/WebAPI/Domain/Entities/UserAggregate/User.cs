@@ -1,3 +1,4 @@
+using Domain.DomainEvents;
 using Domain.Entities.RoleAggregate;
 using Domain.Primitives;
 using Domain.ValueObjects;
@@ -34,9 +35,8 @@ public class User : AggregateRoot
     {
         
         var user = new User(Guid.NewGuid(), name, phoneNumber);
-        
         //raise domain event here if needed
-
+        user.RaiseDomainEvent(new UserRegisteredDomainEvent(Guid.NewGuid(),  user.Id));
         return user;
     }
 
@@ -78,3 +78,4 @@ public class User : AggregateRoot
     }
     
 }
+
