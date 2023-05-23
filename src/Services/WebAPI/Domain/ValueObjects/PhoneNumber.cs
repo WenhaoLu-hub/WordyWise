@@ -13,6 +13,10 @@ public sealed class PhoneNumber : ValueObject
         Value = value;
     }
 
+    public PhoneNumber()
+    {
+    }
+
     public static Result<PhoneNumber> Create(string value)
     {
         if (value.Length > MaxLength)

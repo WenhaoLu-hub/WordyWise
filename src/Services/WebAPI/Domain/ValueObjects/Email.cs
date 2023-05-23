@@ -18,6 +18,11 @@ public sealed class Email : ValueObject
         Value = value;
     }
     
+    private Email()
+    {
+        
+    }
+    
     public static Result<Email> Create(string email)
     {
         if (string.IsNullOrWhiteSpace(email))

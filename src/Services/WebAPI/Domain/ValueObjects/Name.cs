@@ -13,7 +13,11 @@ public sealed class Name : ValueObject
     {
         Value = value;
     }
-    
+
+    public Name()
+    {
+    }
+
     public static Result<Name> Create(string name)
     {
         if (string.IsNullOrWhiteSpace(name))

@@ -1,3 +1,5 @@
+using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Interceptors;
@@ -21,7 +23,11 @@ public static class DependencyInjection
             });
         
         services.AddScoped<IUserRepository,UserRepository>();
+        services.Decorate<IUserRepository,CachedUserRepository>();
+        
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         return services;
     }
 }
