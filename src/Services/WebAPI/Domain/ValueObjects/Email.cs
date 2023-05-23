@@ -25,22 +25,17 @@ public sealed class Email : ValueObject
     
     public static Result<Email> Create(string email)
     {
-        if (string.IsNullOrWhiteSpace(email))
-        {
-            return Result.Failure<Email>(new Error("Name.Empty", "Name is empty"));
-        }
-        
-        if(!Regex.IsMatch(email, Pattern))
-        {
-            return Result.Failure<Email>(new Error("Name.Invalid", "email is not match the pattern"));
-        }
-
-        if (email.Length > MaxLength)
-        {
-            return Result.Failure<Email>(new Error("Name.TooLong", "Name is too long"));
-        }
-
-        return new Email(email);
+        return Result.Create(email)
+            .Ensure(e =>
+                    string.IsNullOrWhiteSpace(email),
+                new Error("Name.Empty", "Name is empty"))
+            .Ensure(e =>
+                    !Regex.IsMatch(email, Pattern),
+                new Error("Name.Invalid", "email is not match the pattern"))
+            .Ensure(e =>
+                    email.Length > MaxLength,
+                new Error("Name.TooLong", "Name is too long"))
+            .Map(x => new Email(email));
     }
 
     public override IEnumerable<object> GetAtomicValues()

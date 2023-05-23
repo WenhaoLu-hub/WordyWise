@@ -12,11 +12,13 @@ public class CachedUserRepository : IUserRepository
 {
     private readonly UserRepository _userRepository;
     private readonly IDistributedCache _distributedCache;
+    private readonly MyContext _context;
 
-    public CachedUserRepository(UserRepository userRepository, IDistributedCache distributedCache)
+    public CachedUserRepository(UserRepository userRepository, IDistributedCache distributedCache, MyContext context)
     {
         _userRepository = userRepository;
         _distributedCache = distributedCache;
+        _context = context;
     }
 
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -43,6 +45,10 @@ public class CachedUserRepository : IUserRepository
                 ContractResolver = new PrivateResolver(),
                 ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
             });
+        if (user is not null)
+        {
+            _context.Set<User>().Attach(user);
+        }
         return user;
     }
 

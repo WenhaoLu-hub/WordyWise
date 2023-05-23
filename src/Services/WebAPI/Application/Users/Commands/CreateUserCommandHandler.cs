@@ -23,15 +23,15 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
         var nameResult = Name.Create(request.Name);
         var phoneNumber =  PhoneNumber.Create(request.PhoneNumber);
         
-        // if (!nameResult.IsSuccess)
-        // {
-        //     return Result.Failure<Guid>(nameResult.Error);
-        // }
+        if (!nameResult.IsSuccess)
+        {
+            return Result.Failure<Guid>(nameResult.Error);
+        }
         
-        // if (!phoneNumber.IsSuccess)
-        // {
-        //     return Result.Failure<Guid>(phoneNumber.Error);
-        // }
+        if (!phoneNumber.IsSuccess)
+        {
+            return Result.Failure<Guid>(phoneNumber.Error);
+        }
         
         if (!await _userRepository.IsPhoneNumberUniqueAsync(phoneNumber.Value,cancellationToken))
         {

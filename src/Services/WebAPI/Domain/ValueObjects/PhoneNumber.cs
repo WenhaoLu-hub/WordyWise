@@ -17,14 +17,17 @@ public sealed class PhoneNumber : ValueObject
     {
     }
 
-    public static Result<PhoneNumber> Create(string value)
+    public static Result<PhoneNumber> Create(string phoneNumber)
     {
-        if (value.Length > MaxLength)
-        {
-            return Result.Failure<PhoneNumber>(new Error("PhoneNumber.TooLong","PhoneNumber is too long"));
-        }
+        return Result.Create(phoneNumber)
+            .Ensure(e =>
+                    phoneNumber.Length <= MaxLength,
+                new Error("PhoneNumber.TooLong", "PhoneNumber is too long"))
+            .Ensure(e =>
+                    phoneNumber.All(char.IsDigit),
+                new Error("PhoneNumber.NotDigit", "PhoneNumber is not digits"))
+            .Map(e => new PhoneNumber(phoneNumber));
 
-        return new PhoneNumber(value);
     }
 
     public override IEnumerable<object> GetAtomicValues()

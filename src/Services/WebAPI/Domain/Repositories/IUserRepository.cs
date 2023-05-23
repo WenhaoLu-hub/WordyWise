@@ -12,6 +12,7 @@ public interface IUserRepository
     Task<bool> IsEmailUniqueAsync(Email email, CancellationToken cancellationToken = default);
 
     Task<bool> IsPhoneNumberUniqueAsync(PhoneNumber phone, CancellationToken cancellationToken = default);
+    
 
     void Add(User? user);
 
