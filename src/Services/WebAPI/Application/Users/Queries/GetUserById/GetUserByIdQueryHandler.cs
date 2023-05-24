@@ -1,4 +1,5 @@
 using Application.Abstractions.Messaging;
+using Domain.Errors;
 using Domain.Repositories;
 using Domain.Shared;
 
@@ -18,9 +19,7 @@ internal sealed class GetUserByIdQueryHandler :IQueryHandler<GetUserByIdQuery,Us
         var user = await _repository.GetByIdAsync(request.UserId, cancellationToken);
         if (user is null)
         {
-            return Result.Failure<UserResponse>(new Error(
-                "User.NotFound", 
-                $"The User with {request.UserId} is not found"));
+            return Result.Failure<UserResponse>(DomainErrors.User.UserNotFoundById(request.UserId));
         }
 
         return new UserResponse(user.Id, user.Name.Value);

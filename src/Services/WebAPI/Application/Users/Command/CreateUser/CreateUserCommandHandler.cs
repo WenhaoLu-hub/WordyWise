@@ -5,7 +5,7 @@ using Domain.Repositories;
 using Domain.Shared;
 using Domain.ValueObjects;
 
-namespace Application.Users.Commands;
+namespace Application.Users.Command.CreateUser;
 
 public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand,Guid>
 {
@@ -36,12 +36,12 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
             return Result.Failure<Guid>(email.Error);
         }
 
-        if (!await _userRepository.IsPhoneNumberUniqueAsync(phoneNumber.Value,cancellationToken))
+        if (await _userRepository.IsPhoneNumberUniqueAsync(phoneNumber.Value,cancellationToken))
         {
             return Result.Failure<Guid>(DomainErrors.User.DuplicatePhoneNumber);
         }
 
-        if (!await _userRepository.IsEmailUniqueAsync(email.Value,cancellationToken))
+        if (await _userRepository.IsEmailUniqueAsync(email.Value,cancellationToken))
         {
             return Result.Failure<Guid>(DomainErrors.User.DuplicateEmail);
         }

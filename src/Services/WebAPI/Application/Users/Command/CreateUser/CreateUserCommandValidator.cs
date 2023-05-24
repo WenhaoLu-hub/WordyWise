@@ -1,10 +1,7 @@
-using Application.Abstractions.Messaging;
-using Domain.Shared;
 using Domain.ValueObjects;
 using FluentValidation;
-using MediatR;
 
-namespace Application.Users.Commands;
+namespace Application.Users.Command.CreateUser;
 
 internal class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {

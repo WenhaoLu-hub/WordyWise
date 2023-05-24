@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MpziN1rtLCBkJBkdocfVamOfLxBIkLLsEHtqoY2MA/SvqRYtICqsCcrAThh5nBgIXW+Qzk4OnqmvHNKcexfPqw==",
+  "dgSpecHash": "S2mLRSq0rYCE1wHgJ9UmXKe/u1+iQKFVf1G7SMA1D8q3mGZaDPNOBWDyAVAVrvTKrmuMSoTA64qZ9M0KC5JitA==",
   "success": true,
   "projectFilePath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/WebAPI/WebAPI.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "/Users/asher/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.aspnetcore.authentication.core/2.2.0/microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "/Users/asher/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.5/microsoft.aspnetcore.authentication.jwtbearer.7.0.5.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.aspnetcore.authorization/2.2.0/microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.aspnetcore.authorization.policy/2.2.0/microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "/Users/asher/.nuget/packages/microsoft.aspnetcore.cryptography.internal/7.0.5/microsoft.aspnetcore.cryptography.internal.7.0.5.nupkg.sha512",

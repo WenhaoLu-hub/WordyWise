@@ -1,3 +1,3 @@
 namespace Presentation.RequestParams.User;
 
-public record LoginRequest(string Email, string Password);
+public sealed record LoginRequest(string Email, string Password);

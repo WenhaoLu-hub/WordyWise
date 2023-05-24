@@ -36,6 +36,7 @@ public class CachedUserRepository : IUserRepository
 
             await _distributedCache.SetStringAsync(key, 
                 JsonConvert.SerializeObject(user), 
+                new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(10)),
                 cancellationToken);
             return user;
         }

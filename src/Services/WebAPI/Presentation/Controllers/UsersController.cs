@@ -1,22 +1,28 @@
-using Application.Users.Commands;
+using Application.Users.Command.ChangePassword;
+using Application.Users.Command.CreateUser;
+using Application.Users.Command.SetPassword;
 using Application.Users.Login;
 using Application.Users.Queries.GetUserById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Abstractions;
 using Presentation.RequestParams.User;
 
 namespace Presentation.Controllers;
 
-[Route("api/users")]
+[Route("api/[controller]/[action]")]
 public sealed class UsersController : ApiController
 {
     public UsersController(ISender sender) : base(sender)
     {
     }
 
+    [Authorize]
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetUserById(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetUserById(
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var query = new GetUserByIdQuery(id);
 
@@ -25,11 +31,13 @@ public sealed class UsersController : ApiController
         return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
     }
 
-
-    [HttpPost]
-    public async Task<IActionResult> RegisterUser(string name, string phoneNumber, string email, CancellationToken cancellationToken)
+    [AllowAnonymous]
+    [HttpPost("register")]
+    public async Task<IActionResult> RegisterUser(
+        [FromBody]RegisterUserRequest request,
+        CancellationToken cancellationToken)
     {
-        var query = new CreateUserCommand(name, phoneNumber, email);
+        var query = new CreateUserCommand(request.Name, request.PhoneNumber, request.Email);
 
         var result = await Sender.Send(query,cancellationToken);
 
@@ -59,5 +67,41 @@ public sealed class UsersController : ApiController
         }
 
         return Ok(result.Value);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> SetPassword(
+        Guid id,
+        [FromBody] ResetPasswordRequest request,
+        CancellationToken cancellationToken)
+    {
+        var command = new SetUserPasswordCommand(id, request.Password);
+
+        var result = await Sender.Send(command,cancellationToken);
+
+        if (result.IsFailure)
+        {
+            return HandleFailure(result);
+        }
+
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> ChangePassword(
+        Guid id,
+        [FromBody]ChangePasswordRequest request,
+        CancellationToken cancellationToken)
+    {
+        var command = new ChangeUserPasswordCommand(id, request.OldPassword, request.NewPassword);
+
+        var result = await Sender.Send(command, cancellationToken);
+
+        if (result.IsFailure)
+        {
+            return HandleFailure(result);
+        }
+
+        return NoContent();
     }
 }

@@ -1,4 +1,4 @@
-using Application.Users.Commands;
+using Application.Users.Command.CreateUser;
 using Domain.Entities.UserAggregate;
 using Domain.Errors;
 using Domain.Repositories;
@@ -23,7 +23,7 @@ public class CreateUserCommandHandlerTest
     public async void Handle_Should_ReturnFailureResult_WhenPhoneNumberIsNotUnique()
     {
         //Arrange
-        var command = new CreateUserCommand("Test","123456789");
+        var command = new CreateUserCommand("Test","123456789","12345@gmail.com");
         _userRepositoryMock.Setup(
                 x => x.IsPhoneNumberUniqueAsync(
                     It.IsAny<PhoneNumber>(),
@@ -45,7 +45,7 @@ public class CreateUserCommandHandlerTest
     public async void Handle_Should_ReturnTrueResult_WhenPhoneNumberIsUnique()
     {
         //Arrange
-        var command = new CreateUserCommand("Test","123456789");
+        var command = new CreateUserCommand("Test","123456789","12345@gmail.com");
         _userRepositoryMock.Setup(
                 x => x.IsPhoneNumberUniqueAsync(
                     It.IsAny<PhoneNumber>(),
@@ -68,7 +68,7 @@ public class CreateUserCommandHandlerTest
     public async void Handle_Should_CallRepository_WhenPhoneNumberIsUnique()
     {
         //Arrange
-        var command = new CreateUserCommand("Test","123456789");
+        var command = new CreateUserCommand("Test","123456789","12345@gmail.com");
         _userRepositoryMock.Setup(
                 x => x.IsPhoneNumberUniqueAsync(
                     It.IsAny<PhoneNumber>(),
@@ -92,7 +92,7 @@ public class CreateUserCommandHandlerTest
     public async void Handle_Should_Not_CallUnitOfWork_WhenPhoneNumberIsNotUnique()
     {
         //Arrange
-        var command = new CreateUserCommand("Test","123456789");
+        var command = new CreateUserCommand("Test","123456789","12345@gmail.com");
         _userRepositoryMock.Setup(
                 x => x.IsPhoneNumberUniqueAsync(
                     It.IsAny<PhoneNumber>(),

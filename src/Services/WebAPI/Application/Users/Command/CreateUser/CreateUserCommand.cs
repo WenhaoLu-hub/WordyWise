@@ -1,9 +1,6 @@
 using Application.Abstractions.Messaging;
-using Domain.Shared;
-using Domain.ValueObjects;
-using MediatR;
 
-namespace Application.Users.Commands;
+namespace Application.Users.Command.CreateUser;
 
 public sealed record CreateUserCommand(
     string Name, 

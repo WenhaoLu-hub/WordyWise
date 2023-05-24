@@ -4,7 +4,9 @@ public sealed class ValidationResult :Result, IValidationResult
 {
     public Error[] Errors { get; }
 
-    public ValidationResult(Error[] errors) : base(false,IValidationResult.ValidationResult)
+    private ValidationResult(
+        Error[] errors)
+        : base(false,IValidationResult.ValidationError)
     {
         Errors = errors;
     }

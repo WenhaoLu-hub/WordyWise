@@ -1,10 +1,10 @@
 namespace Domain.Shared;
 
-public sealed class ValidationResult<TValue> :Result, IValidationResult
+public sealed class ValidationResult<TValue> :Result<TValue>, IValidationResult
 {
     public Error[] Errors { get; }
 
-    public ValidationResult(Error[] errors) : base(false,IValidationResult.ValidationResult)
+    private ValidationResult(Error[] errors) : base(default, false,IValidationResult.ValidationError)
     {
         Errors = errors;
     }

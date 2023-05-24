@@ -14,7 +14,7 @@ public class User : AggregateRoot
     public Email? Email { get; private set; }
     public PhoneNumber PhoneNumber { get; private set; }
     public ICollection<UserRole> UserRoles { get; private set; } = new List<UserRole>();
-    public string? PasswordHash { get; private set; }
+    public string? PasswordHash { get; private set; } = string.Empty;
     
     public DateTime CreatedOnUtc { get; private init; }
     
@@ -58,6 +58,7 @@ public class User : AggregateRoot
         }
         var passwordHasher = new PasswordHasher<User>();
         PasswordHash = passwordHasher.HashPassword(this,password);
+        ModifiedOnUtc = DateTime.UtcNow;
         return Result.Success();
     }
 
@@ -83,9 +84,22 @@ public class User : AggregateRoot
         return true;
     }
 
-    public void ChangePassword()
+    public Result ChangePassword(string oldPassword, string newPassword)
     {
-        throw new NotImplementedException();
+        if (!HasPassword())
+        {
+            return Result.Failure<bool>(DomainErrors.User.PasswordNotSet);
+        }
+
+        var checkPassword = CheckPassword(oldPassword);
+        if (checkPassword.IsFailure)
+        {
+            return Result.Failure(checkPassword.Error);
+        }
+
+        PasswordHash = new PasswordHasher<User>().HashPassword(this, newPassword);
+        ModifiedOnUtc = DateTime.UtcNow;
+        return Result.Success();
     }
     
     public void ChangePhoneNumber(PhoneNumber phoneNumber)

@@ -29,7 +29,10 @@ public static class DomainErrors
         
         public static readonly Func<Email, Error> UserNotFoundByEmail = email => new Error(
             "User.NotFound", 
-            $"The User with {email} is not found");
-        
+            $"The User with email {email} is not found");
+
+        public static readonly Func<Guid,Error> UserNotFoundById  = id => new Error(
+            "User.NotFound", 
+            $"The User with Id {id} is not found");
     }
 }
