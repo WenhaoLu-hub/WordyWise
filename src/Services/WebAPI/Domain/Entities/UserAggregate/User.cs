@@ -1,6 +1,8 @@
 using Domain.DomainEvents;
 using Domain.Entities.RoleAggregate;
+using Domain.Errors;
 using Domain.Primitives;
+using Domain.Shared;
 using Domain.ValueObjects;
 using Microsoft.AspNetCore.Identity;
 
@@ -22,19 +24,21 @@ public class User : AggregateRoot
     {
     }
 
-    private User(Guid id, Name name, PhoneNumber phoneNumber) : base(id)
+    private User(Guid id, Name name, PhoneNumber phoneNumber, Email email) : base(id)
     {
         Name = name;
         PhoneNumber = phoneNumber;
+        Email = email;
         CreatedOnUtc = DateTime.UtcNow;
     }
 
     public static User? Create(
         Name name,
-        PhoneNumber phoneNumber)
+        PhoneNumber phoneNumber,
+        Email email)
     {
         
-        var user = new User(Guid.NewGuid(), name, phoneNumber);
+        var user = new User(Guid.NewGuid(), name, phoneNumber, email);
         //raise domain event here if needed
         user.RaiseDomainEvent(new UserRegisteredDomainEvent(Guid.NewGuid(),  user.Id));
         return user;
@@ -45,16 +49,38 @@ public class User : AggregateRoot
         Name = name;
     }
 
-    public void SetPassword(string password)
+    public Result SetPassword(string password)
     {
         //validation first
+        if (HasPassword())
+        {
+            return Result.Failure(DomainErrors.User.PasswordAlreadySet);
+        }
         var passwordHasher = new PasswordHasher<User>();
         PasswordHash = passwordHasher.HashPassword(this,password);
+        return Result.Success();
     }
 
-    public bool CheckPassword()
+    private bool HasPassword()
     {
-        throw new NotImplementedException();
+        return PasswordHash is not null;
+    }
+    public Result<bool> CheckPassword(string password)
+    {
+        if (!HasPassword())
+        {
+            return Result.Failure<bool>(DomainErrors.User.PasswordNotSet);
+        }
+        var verificationResult = new PasswordHasher<User>()
+            .VerifyHashedPassword(
+                this,
+                PasswordHash!,
+                password);
+        if (verificationResult != PasswordVerificationResult.Success)
+        {
+            return Result.Failure<bool>(DomainErrors.User.PasswordNotMatch);
+        }
+        return true;
     }
 
     public void ChangePassword()

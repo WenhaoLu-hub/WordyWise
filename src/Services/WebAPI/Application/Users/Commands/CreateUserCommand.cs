@@ -7,4 +7,5 @@ namespace Application.Users.Commands;
 
 public sealed record CreateUserCommand(
     string Name, 
-    string PhoneNumber) : ICommand<Guid>;
+    string PhoneNumber,
+    string Email) : ICommand<Guid>;

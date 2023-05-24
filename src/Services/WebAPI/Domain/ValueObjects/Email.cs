@@ -28,13 +28,13 @@ public sealed class Email : ValueObject
         return Result.Create(email)
             .Ensure(e =>
                     string.IsNullOrWhiteSpace(email),
-                new Error("Name.Empty", "Name is empty"))
+                new Error("Email.Empty", "Email is empty"))
             .Ensure(e =>
                     !Regex.IsMatch(email, Pattern),
-                new Error("Name.Invalid", "email is not match the pattern"))
+                new Error("Email.Invalid", "Email is not match the pattern"))
             .Ensure(e =>
                     email.Length > MaxLength,
-                new Error("Name.TooLong", "Name is too long"))
+                new Error("Email.TooLong", "Email is too long"))
             .Map(x => new Email(email));
     }
 

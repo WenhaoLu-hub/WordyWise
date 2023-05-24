@@ -19,16 +19,15 @@ public class UserRepository : IUserRepository
         return await _myContext.Set<User>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
-    public Task<User> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
+    public async Task<User?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
     {
-        
-        throw new NotImplementedException();
+
+        return await _myContext.Set<User>().FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
     }
 
-    public Task<bool> IsEmailUniqueAsync(Email email, CancellationToken cancellationToken = default)
+    public async Task<bool> IsEmailUniqueAsync(Email email, CancellationToken cancellationToken = default)
     {
-        // _myContext.Set<User>().FirstOrDefaultAsync(x=>x.Email=email, cancellationToken);
-        throw new NotImplementedException();
+        return await _myContext.Set<User>().AnyAsync(x => x.Email == email, cancellationToken);
     }
 
     public async Task<bool> IsPhoneNumberUniqueAsync(PhoneNumber phone, CancellationToken cancellationToken = default)
@@ -43,11 +42,11 @@ public class UserRepository : IUserRepository
 
     public void Update(User user)
     {
-        throw new NotImplementedException();
+        _myContext.Set<User>().Update(user);
     }
 
     public void Delete(User user)
     {
-        throw new NotImplementedException();
+        _myContext.Set<User>().Remove(user);
     }
 }

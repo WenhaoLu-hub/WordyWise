@@ -52,8 +52,9 @@ public class CachedUserRepository : IUserRepository
         return user;
     }
 
-    public async Task<User> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
+    public async Task<User?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
     {
+        //To do, implement redis cache
         return await _userRepository.GetByEmailAsync(email, cancellationToken);
     }
 
