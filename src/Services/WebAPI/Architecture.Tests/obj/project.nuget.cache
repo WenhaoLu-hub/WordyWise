@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HfgMnEsUPaPW+/XA+ACAqElCsLL9Q4XlqEZ1xGq7WpBjUVoO74VKxBYLWl8aJ+5tkiKijQxJVcwFjKKWdFu3oQ==",
+  "dgSpecHash": "R8/pMb3tpb/sv1/XnYZ3U65QkWayEZ+Ce1TjgmL1IbGR/lCVerajmY8qeYliiBOK5IQrH3vKJymhP0Pq5zPbyQ==",
   "success": true,
   "projectFilePath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Architecture.Tests/Architecture.Tests.csproj",
   "expectedPackageFiles": [

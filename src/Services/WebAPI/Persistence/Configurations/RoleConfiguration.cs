@@ -1,4 +1,4 @@
-using Domain.Entities.RoleAggregate;
+using Domain.Entities.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -14,9 +14,13 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
 
         builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
 
-        builder.HasMany(x => x.UserRoles)
-            .WithOne()
-            .HasForeignKey(x => x.RoleId)
-            .IsRequired();
+        builder.HasMany(x => x.Permissions)
+            .WithMany()
+            .UsingEntity<RolePermission>();
+
+        builder.HasMany(x => x.Users)
+            .WithMany(x=>x.Roles);
+
+        builder.HasData(Role.GetValues());
     }
 }

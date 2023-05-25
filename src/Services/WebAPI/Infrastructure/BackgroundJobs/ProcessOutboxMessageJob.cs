@@ -15,13 +15,11 @@ public class ProcessOutboxMessageJob : IJob
 {
     private readonly MyContext _myContext;
     private readonly IPublisher _publisher;
-    private readonly ILogger<ProcessOutboxMessageJob> _logger;
 
-    public ProcessOutboxMessageJob(MyContext myContext, IPublisher publisher, ILogger<ProcessOutboxMessageJob> logger)
+    public ProcessOutboxMessageJob(MyContext myContext, IPublisher publisher)
     {
         _myContext = myContext;
         _publisher = publisher;
-        _logger = logger;
     }
 
     public async Task Execute(IJobExecutionContext context)
@@ -47,12 +45,15 @@ public class ProcessOutboxMessageJob : IJob
                 continue;
             }
 
-            var policyResult = await Policy
-                .Handle<Exception>()
-                .WaitAndRetryAsync(3,
-                    attempt => TimeSpan.FromMicroseconds(50 * attempt))
-                .ExecuteAndCaptureAsync(() => _publisher.Publish(domainEvent, context.CancellationToken));
-            outboxMessage.Error = policyResult.FinalException.ToString();
+            // var policyResult = await Policy
+            //     .Handle<Exception>()
+            //     .WaitAndRetryAsync(3,
+            //         attempt => TimeSpan.FromMicroseconds(50 * attempt))
+            //     .ExecuteAndCaptureAsync(() => _publisher.Publish(domainEvent, context.CancellationToken));
+            await _publisher.Publish(domainEvent, context.CancellationToken);
+            // outboxMessage.Error = policyResult.FinalException.ToString();
+            // outboxMessage.Error = policyResult.FinalException.ToString();
+
             outboxMessage.ProcessedOnUtc = DateTime.UtcNow;
         }
         

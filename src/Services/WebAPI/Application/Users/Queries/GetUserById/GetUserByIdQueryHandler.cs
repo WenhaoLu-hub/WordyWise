@@ -22,6 +22,6 @@ internal sealed class GetUserByIdQueryHandler :IQueryHandler<GetUserByIdQuery,Us
             return Result.Failure<UserResponse>(DomainErrors.User.UserNotFoundById(request.UserId));
         }
 
-        return new UserResponse(user.Id, user.Name.Value);
+        return new UserResponse(user.Id, user.Email.Value);
     }
 }

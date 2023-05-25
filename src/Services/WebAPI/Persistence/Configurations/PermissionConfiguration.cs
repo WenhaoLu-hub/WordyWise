@@ -1,4 +1,4 @@
-using Domain.Entities.RoleAggregate;
+using Domain.Entities.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,16 +10,12 @@ public class PermissionConfiguration : IEntityTypeConfiguration<Permission>
     {
         builder.ToTable("T_Permission");
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
-        builder.Property(x => x.Description).HasMaxLength(100);
-        builder.HasMany(x => x.Roles)
-            .WithMany(x => x.Permissions)
-            .UsingEntity<Dictionary<string, object>>(
-                "T_RolePermission",
-                a=> a.HasOne<Role>().WithMany().HasForeignKey("RoleId"),
-                b=>b.HasOne<Permission>().WithMany().HasForeignKey("PermissionId")
-            );
-
-
+        var permissions = Enum.GetValues<Domain.Enums.Permission>()
+            .Select(x => new Permission
+            {
+                Id = (int)x,
+                Name = x.ToString()
+            });
+        builder.HasData(permissions);
     }
 }

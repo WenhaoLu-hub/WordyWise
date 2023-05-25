@@ -5,29 +5,35 @@ namespace Domain.Primitives;
 public abstract class Enumeration<TEnum>: IEquatable<Enumeration<TEnum>>
     where TEnum : Enumeration<TEnum>
 {
-    private static readonly Dictionary<int, TEnum> Enumerations = CreateEnumerations();
+    private static readonly Lazy<Dictionary<int, TEnum>> EnumerationsDictionary =
+        new(() => CreateEnumerationDictionary(typeof(TEnum)));
     
-    public int Value { get; protected init; }
+    public int Id { get; protected init; }
     public string Name { get; protected init; }
 
     protected Enumeration(int value, string name)
     {
-        Value = value;
+        Id = value;
         Name = name;
     }
 
 
     public static TEnum? FromValue(int value)
     {
-        return Enumerations.TryGetValue(value,
+        return EnumerationsDictionary.Value.TryGetValue(value,
             out TEnum? enumeration)?
                 enumeration
                 : default;
     }
 
+    public static IReadOnlyCollection<TEnum> GetValues()
+    {
+        return EnumerationsDictionary.Value.Values.ToList();
+    }
+
     public static TEnum? FromName(string name)
     {
-        return Enumerations.Values.FirstOrDefault(x => x.Name == name);
+        return EnumerationsDictionary.Value.Values.FirstOrDefault(x => x.Name == name);
     }
     public bool Equals(Enumeration<TEnum>? other)
     {
@@ -37,7 +43,7 @@ public abstract class Enumeration<TEnum>: IEquatable<Enumeration<TEnum>>
         }
 
         return other.GetType() == GetType() &&
-               Value == other.Value;
+               Id == other.Id;
     }
 
     public override bool Equals(object? obj)
@@ -47,22 +53,24 @@ public abstract class Enumeration<TEnum>: IEquatable<Enumeration<TEnum>>
 
     public override int GetHashCode()
     {
-        return Value.GetHashCode() * 17;
+        return Id.GetHashCode() * 17;
     }
     
-    private static Dictionary<int, TEnum> CreateEnumerations()
+    
+    private static Dictionary<int, TEnum> CreateEnumerationDictionary(Type enumType)
     {
-        var enumerationType = typeof(TEnum);
-        var fieldsForType = enumerationType.GetFields(
+        return GetFieldsForType(enumType).ToDictionary(t => t.Id);
+    }
+    
+    private static IEnumerable<TEnum> GetFieldsForType(Type enumType)
+    {
+        return enumType.GetFields(
                 BindingFlags.Public |
                 BindingFlags.Static |
                 BindingFlags.FlattenHierarchy)
-            .Where(info => 
-                enumerationType.IsAssignableFrom(info.FieldType))
-            .Select(info => 
-                (TEnum)info.GetValue(default)!);
-        return fieldsForType.ToDictionary(x => x.Value);
-
+            .Where(fieldInfo => 
+                enumType.IsAssignableFrom(fieldInfo.FieldType))
+            .Select(fieldInfo => 
+                (TEnum)fieldInfo.GetValue(default)!);
     }
-
 }

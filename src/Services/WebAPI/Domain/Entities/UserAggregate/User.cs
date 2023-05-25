@@ -1,5 +1,4 @@
 using Domain.DomainEvents;
-using Domain.Entities.RoleAggregate;
 using Domain.Errors;
 using Domain.Primitives;
 using Domain.Shared;
@@ -13,13 +12,12 @@ public class User : AggregateRoot
     public Name Name { get; private set; }
     public Email? Email { get; private set; }
     public PhoneNumber PhoneNumber { get; private set; }
-    public ICollection<UserRole> UserRoles { get; private set; } = new List<UserRole>();
     public string? PasswordHash { get; private set; } = string.Empty;
-    
     public DateTime CreatedOnUtc { get; private init; }
-    
     public DateTime? ModifiedOnUtc { get; private set; }
 
+    public ICollection<Role> Roles { get; set; }
+    
     private User() //ORM
     {
     }
@@ -107,15 +105,15 @@ public class User : AggregateRoot
         PhoneNumber = phoneNumber;
     }
 
-    public void AssignRole(Role role)
-    {
-        if (UserRoles.Any(x => x.RoleId == role.Id))
-        {
-            return;
-        }
-        var userRole = new UserRole(Id, role.Id);
-        UserRoles.Add(userRole);
-    }
+    // public void AssignRole(Role role)
+    // {
+    //     if (UserRoles.Any(x => x.RoleId == role.Id))
+    //     {
+    //         return;
+    //     }
+    //     var userRole = new UserRole(Id, role.Id);
+    //     UserRoles.Add(userRole);
+    // }
     
 }
 

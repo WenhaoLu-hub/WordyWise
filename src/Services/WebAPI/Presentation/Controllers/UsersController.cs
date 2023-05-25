@@ -3,6 +3,8 @@ using Application.Users.Command.CreateUser;
 using Application.Users.Command.SetPassword;
 using Application.Users.Login;
 using Application.Users.Queries.GetUserById;
+using Domain.Enums;
+using Infrastructure.Authentication;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +20,7 @@ public sealed class UsersController : ApiController
     {
     }
 
-    [Authorize]
+    [HasPermission(Permission.ReadUser)]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUserById(
         Guid id,
@@ -30,10 +32,9 @@ public sealed class UsersController : ApiController
 
         return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
     }
-
-    [AllowAnonymous]
-    [HttpPost("register")]
-    public async Task<IActionResult> RegisterUser(
+    
+    [HttpPost]
+    public async Task<IActionResult> Register(
         [FromBody]RegisterUserRequest request,
         CancellationToken cancellationToken)
     {
@@ -68,8 +69,8 @@ public sealed class UsersController : ApiController
 
         return Ok(result.Value);
     }
-
-    [HttpPut("{id}")]
+    
+    [HttpPut("{id}"),Authorize]
     public async Task<IActionResult> SetPassword(
         Guid id,
         [FromBody] ResetPasswordRequest request,
@@ -87,7 +88,7 @@ public sealed class UsersController : ApiController
         return NoContent();
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id}"),Authorize]
     public async Task<IActionResult> ChangePassword(
         Guid id,
         [FromBody]ChangePasswordRequest request,

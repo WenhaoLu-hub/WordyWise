@@ -337,6 +337,9 @@
             "projectReferences": {
               "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Application/Application.csproj": {
                 "projectPath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Application/Application.csproj"
+              },
+              "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/asher/Projects/WordyWise/src/Services/WebAPI/Infrastructure/Infrastructure.csproj"
               }
             }
           }

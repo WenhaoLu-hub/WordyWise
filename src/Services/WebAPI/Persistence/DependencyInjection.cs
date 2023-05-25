@@ -24,7 +24,6 @@ public static class DependencyInjection
         
         services.AddScoped<IUserRepository,UserRepository>();
         services.Decorate<IUserRepository,CachedUserRepository>();
-        
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

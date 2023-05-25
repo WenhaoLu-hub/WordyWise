@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
@@ -12,12 +14,40 @@ namespace Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "T_Permission",
+                name: "T_OutBoxMessage",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OccurredOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProcessedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Error = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_T_OutBoxMessage", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "T_OutBoxMessageConsumer",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_T_OutBoxMessageConsumer", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "T_Permission",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +58,8 @@ namespace Persistence.Migrations
                 name: "T_Role",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -57,12 +88,12 @@ namespace Persistence.Migrations
                 name: "T_RolePermission",
                 columns: table => new
                 {
-                    PermissionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    PermissionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_T_RolePermission", x => new { x.PermissionId, x.RoleId });
+                    table.PrimaryKey("PK_T_RolePermission", x => new { x.RoleId, x.PermissionId });
                     table.ForeignKey(
                         name: "FK_T_RolePermission_T_Permission_PermissionId",
                         column: x => x.PermissionId,
@@ -73,6 +104,30 @@ namespace Persistence.Migrations
                         name: "FK_T_RolePermission_T_Role_RoleId",
                         column: x => x.RoleId,
                         principalTable: "T_Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoleUser",
+                columns: table => new
+                {
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleUser", x => new { x.RoleId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_RoleUser_T_Role_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "T_Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoleUser_T_User_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "T_User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -96,57 +151,63 @@ namespace Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "T_UserRole",
-                columns: table => new
+            migrationBuilder.InsertData(
+                table: "T_Permission",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
                 {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
+                    { 1, "ReadUser" },
+                    { 2, "UpdateUser" },
+                    { 3, "DeleteUser" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "T_Role",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Registered" });
+
+            migrationBuilder.InsertData(
+                table: "T_RolePermission",
+                columns: new[] { "PermissionId", "RoleId" },
+                values: new object[,]
                 {
-                    table.PrimaryKey("PK_T_UserRole", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_T_UserRole_T_Role_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "T_Role",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_T_UserRole_T_User_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "T_User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    { 1, 1 },
+                    { 2, 1 }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_T_RolePermission_RoleId",
+                name: "IX_RoleUser_UsersId",
+                table: "RoleUser",
+                column: "UsersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_T_RolePermission_PermissionId",
                 table: "T_RolePermission",
-                column: "RoleId");
+                column: "PermissionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_T_UserLoginHistory_UserId",
                 table: "T_UserLoginHistory",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_T_UserRole_RoleId",
-                table: "T_UserRole",
-                column: "RoleId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "RoleUser");
+
+            migrationBuilder.DropTable(
+                name: "T_OutBoxMessage");
+
+            migrationBuilder.DropTable(
+                name: "T_OutBoxMessageConsumer");
+
+            migrationBuilder.DropTable(
                 name: "T_RolePermission");
 
             migrationBuilder.DropTable(
                 name: "T_UserLoginHistory");
-
-            migrationBuilder.DropTable(
-                name: "T_UserRole");
 
             migrationBuilder.DropTable(
                 name: "T_Permission");

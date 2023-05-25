@@ -30,7 +30,7 @@ public sealed class Email : ValueObject
                     !string.IsNullOrWhiteSpace(email),
                 new Error("Email.Empty", "Email is empty"))
             .Ensure(e =>
-                    !Regex.IsMatch(email, Pattern),
+                    Regex.IsMatch(email, Pattern),
                 new Error("Email.Invalid", "Email is not match the pattern"))
             .Ensure(e =>
                     email.Length <= MaxLength,

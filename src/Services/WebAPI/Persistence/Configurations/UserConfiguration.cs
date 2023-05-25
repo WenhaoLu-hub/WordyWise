@@ -22,10 +22,5 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 .HasMaxLength(20)
                 .IsUnicode(false);
         });
-        builder.HasMany(x => x.UserRoles)
-            .WithOne()
-            .HasForeignKey(x => x.RoleId)
-            .IsRequired();
-
     }
 }
