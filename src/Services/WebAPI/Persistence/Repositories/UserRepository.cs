@@ -16,7 +16,7 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _myContext.Set<User>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        return await _myContext.Set<User>().Include(u => u.Roles).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
     public async Task<User?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)

@@ -13,7 +13,8 @@ public class RolePermissionConfiguration : IEntityTypeConfiguration<RolePermissi
         builder.HasKey(x => new { x.RoleId, x.PermissionId });
         builder.HasData(
             Create(Role.Registered, Permission.ReadUser),
-            Create(Role.Registered, Permission.UpdateUser));
+            Create(Role.Registered, Permission.UpdateUser),
+            Create(Role.Registered,Permission.DeleteUser));
     }
 
     private static RolePermission Create(Role role, Permission permission)

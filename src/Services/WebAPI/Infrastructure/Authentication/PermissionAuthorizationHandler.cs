@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -15,7 +16,7 @@ public class PermissionAuthorizationHandler : AuthorizationHandler<PermissionReq
 
     protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
     {
-        var userId = context.User.Claims.FirstOrDefault(x=> x.Type ==JwtRegisteredClaimNames.Sub)?.Value;
+        var userId = context.User.Claims.FirstOrDefault(x=> x.Type == ClaimTypes.NameIdentifier)?.Value;
         if (!Guid.TryParse(userId,out Guid parsedUserId))
         {
             return;

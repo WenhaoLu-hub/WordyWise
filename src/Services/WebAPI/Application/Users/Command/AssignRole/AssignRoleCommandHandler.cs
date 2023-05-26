@@ -30,8 +30,13 @@ public class AssignRoleCommandHandler : ICommandHandler<AssignRoleCommand>
         {
             return Result.Failure(DomainErrors.User.RoleNotFoundById(request.RoleId));
         }
-        user.AssignRole(role);
-        
+
+        Result result = user.AssignRole(role);
+
+        if (result.IsFailure)
+        {
+            return Result.Failure(result.Error);
+        }
         await _unitOfWork.SaveChangesAsync(cancellationToken);
         
         return Result.Success();

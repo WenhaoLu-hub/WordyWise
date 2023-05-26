@@ -35,7 +35,11 @@ public class CachedUserRepository : IUserRepository
             }
 
             await _distributedCache.SetStringAsync(key, 
-                JsonConvert.SerializeObject(user), 
+                JsonConvert.SerializeObject(user,
+                    new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    }), 
                 new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(10)),
                 cancellationToken);
             return user;
@@ -44,7 +48,7 @@ public class CachedUserRepository : IUserRepository
             new JsonSerializerSettings
             {
                 ContractResolver = new PrivateResolver(),
-                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
             });
         if (user is not null)
         {

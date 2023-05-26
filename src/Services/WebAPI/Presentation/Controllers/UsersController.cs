@@ -107,7 +107,8 @@ public sealed class UsersController : ApiController
         return NoContent();
     }
     
-    [HttpPost("{userId}"),Authorize]
+    [HasPermission(Permission.ReadUser)]
+    [HttpPost("{userId}")]
     public async Task<IActionResult> AssignRole(
         Guid userId,
         [FromBody]AssignRoleRequest request,

@@ -29,6 +29,10 @@ builder
     .Services
     .AddControllers()
     .AddApplicationPart(Presentation.AssemblyReference.Assembly());
+//     .AddNewtonsoftJson(options =>
+// {
+//     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+// });
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
