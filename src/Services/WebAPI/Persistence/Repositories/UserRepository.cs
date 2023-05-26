@@ -35,7 +35,17 @@ public class UserRepository : IUserRepository
         return await _myContext.Set<User>().AnyAsync(x => x.PhoneNumber == phone, cancellationToken);
     }
 
-    public void Add(User? user)
+    public void AddLoginHistory(UserLoginHistory userLoginHistory)
+    {
+        _myContext.Set<UserLoginHistory>().Add(userLoginHistory);
+    }
+    
+    public void RemoveRole(User user, Role role)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Add(User user)
     {
         _myContext.Set<User>().Add(user);
     }
@@ -48,5 +58,10 @@ public class UserRepository : IUserRepository
     public void Delete(User user)
     {
         _myContext.Set<User>().Remove(user);
+    }
+
+    public async Task<Role?> FindRoleById(int roleId, CancellationToken cancellationToken = default)
+    {
+        return await _myContext.Set<Role>().FirstOrDefaultAsync(x=> x.Id == roleId, cancellationToken);
     }
 }

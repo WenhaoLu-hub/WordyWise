@@ -12,5 +12,7 @@ public class Role : Enumeration<Role>
     public ICollection<Permission> Permissions { get; set; } = new List<Permission>();
 
     public ICollection<User> Users { get; set; } = new List<User>();
+    
+    // public ICollection<UserRole> UserRoles { get; set; }
 
 }

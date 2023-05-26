@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230526050940_user_role")]
+    partial class user_role
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,6 +219,21 @@ namespace Persistence.Migrations
                     b.ToTable("T_OutBoxMessage", (string)null);
                 });
 
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.Property<int>("RolesId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RolesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("RoleUser");
+                });
+
             modelBuilder.Entity("Domain.Entities.UserAggregate.RolePermission", b =>
                 {
                     b.HasOne("Domain.Entities.UserAggregate.Permission", null)
@@ -268,17 +286,46 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.UserAggregate.UserRole", b =>
                 {
+                    b.HasOne("Domain.Entities.UserAggregate.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.UserAggregate.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RoleUser", b =>
+                {
                     b.HasOne("Domain.Entities.UserAggregate.Role", null)
                         .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.UserAggregate.User", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.UserAggregate.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UserAggregate.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

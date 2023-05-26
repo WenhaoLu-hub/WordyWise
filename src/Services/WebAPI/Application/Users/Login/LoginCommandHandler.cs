@@ -1,6 +1,6 @@
-using System.ComponentModel.DataAnnotations;
 using Application.Abstractions;
 using Application.Abstractions.Messaging;
+using Domain.Entities.UserAggregate;
 using Domain.Errors;
 using Domain.Repositories;
 using Domain.Shared;
@@ -37,11 +37,13 @@ public sealed class LoginCommandHandler : ICommandHandler<LoginCommand, string>
         {
             return Result.Failure<string>(checkPassword.Error);
         }
+
+        var userLoginHistory = UserLoginHistory.Create(Guid.NewGuid(), user.Id);
         
-        //Generate Token
+        _userRepository.AddLoginHistory(userLoginHistory);
+        
         var token = _jwtProvider.Generate(user);
         
-        //Return Token
         return token;
     }
 }

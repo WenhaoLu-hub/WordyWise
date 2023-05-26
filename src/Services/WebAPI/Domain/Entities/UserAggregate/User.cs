@@ -15,9 +15,8 @@ public class User : AggregateRoot
     public string? PasswordHash { get; private set; } = string.Empty;
     public DateTime CreatedOnUtc { get; private init; }
     public DateTime? ModifiedOnUtc { get; private set; }
+    public ICollection<Role> Roles { get; set; } = new List<Role>();
 
-    public ICollection<Role> Roles { get; set; }
-    
     private User() //ORM
     {
     }
@@ -30,7 +29,7 @@ public class User : AggregateRoot
         CreatedOnUtc = DateTime.UtcNow;
     }
 
-    public static User? Create(
+    public static User Create(
         Name name,
         PhoneNumber phoneNumber,
         Email email)
@@ -50,7 +49,7 @@ public class User : AggregateRoot
     public Result SetPassword(string password)
     {
         //validation first
-        if (HasPassword())
+        if (!HasPassword())
         {
             return Result.Failure(DomainErrors.User.PasswordAlreadySet);
         }
@@ -105,15 +104,25 @@ public class User : AggregateRoot
         PhoneNumber = phoneNumber;
     }
 
-    // public void AssignRole(Role role)
-    // {
-    //     if (UserRoles.Any(x => x.RoleId == role.Id))
-    //     {
-    //         return;
-    //     }
-    //     var userRole = new UserRole(Id, role.Id);
-    //     UserRoles.Add(userRole);
-    // }
+    public Result AssignRole(Role role)
+    {
+        if (Roles.Any(x=>x.Id == role.Id))
+        {
+            return Result.Failure(new Error("User.DuplicateRole","You already have this role"));
+        }
+        Roles.Add(role);
+        return Result.Success();
+    }
+
+    public Result RemoveRole(Role role)
+    {
+        if (Roles.All(x => x.Id != role.Id))
+        {
+            return Result.Failure(new Error("User.NoRole","You don't have this role"));
+        }
+        Roles.Remove(role);
+        return Result.Success();
+    }
     
 }
 

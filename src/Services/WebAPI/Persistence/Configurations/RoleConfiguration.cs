@@ -19,7 +19,8 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
             .UsingEntity<RolePermission>();
 
         builder.HasMany(x => x.Users)
-            .WithMany(x=>x.Roles);
+            .WithMany(x=>x.Roles)
+            .UsingEntity<UserRole>().ToTable("T_UserRole").HasKey(x=> new {x.UserId, x.RoleId});
 
         builder.HasData(Role.GetValues());
     }

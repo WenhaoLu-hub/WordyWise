@@ -12,12 +12,15 @@ public interface IUserRepository
     Task<bool> IsEmailUniqueAsync(Email email, CancellationToken cancellationToken = default);
 
     Task<bool> IsPhoneNumberUniqueAsync(PhoneNumber phone, CancellationToken cancellationToken = default);
-    
 
-    void Add(User? user);
+    void AddLoginHistory(UserLoginHistory userLoginHistory);
+    
+    
+    void Add(User user);
 
     void Update(User user);
 
     void Delete(User user);
 
+    Task<Role?> FindRoleById(int roleId, CancellationToken cancellationToken = default);
 }

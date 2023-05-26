@@ -34,5 +34,9 @@ public static class DomainErrors
         public static readonly Func<Guid,Error> UserNotFoundById  = id => new Error(
             "User.NotFound", 
             $"The User with Id {id} is not found");
+
+        public static readonly Func<int, Error> RoleNotFoundById = id => new Error(
+            "Role.NotFound",
+            $"The Role with Id {id} is not found");
     }
 }

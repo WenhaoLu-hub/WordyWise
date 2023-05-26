@@ -69,7 +69,12 @@ public class CachedUserRepository : IUserRepository
         return await _userRepository.IsPhoneNumberUniqueAsync(phone, cancellationToken);
     }
 
-    public void Add(User? user)
+    public void AddLoginHistory(UserLoginHistory userLoginHistory)
+    {
+        _userRepository.AddLoginHistory(userLoginHistory);
+    }
+
+    public void Add(User user)
     {
         _userRepository.Add(user);
     }
@@ -82,5 +87,10 @@ public class CachedUserRepository : IUserRepository
     public void Delete(User user)
     {
         _userRepository.Delete(user);
+    }
+
+    public async Task<Role?> FindRoleById(int roleId, CancellationToken cancellationToken = default)
+    {
+        return await _userRepository.FindRoleById(roleId, cancellationToken);
     }
 }

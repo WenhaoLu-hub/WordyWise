@@ -1,3 +1,4 @@
+using Application.Users.Command.AssignRole;
 using Application.Users.Command.ChangePassword;
 using Application.Users.Command.CreateUser;
 using Application.Users.Command.SetPassword;
@@ -21,12 +22,12 @@ public sealed class UsersController : ApiController
     }
 
     [HasPermission(Permission.ReadUser)]
-    [HttpGet("{id}")]
+    [HttpGet("{userId}")]
     public async Task<IActionResult> GetUserById(
-        Guid id,
+        Guid userId,
         CancellationToken cancellationToken)
     {
-        var query = new GetUserByIdQuery(id);
+        var query = new GetUserByIdQuery(userId);
 
         var response = await Sender.Send(query, cancellationToken);
 
@@ -70,13 +71,13 @@ public sealed class UsersController : ApiController
         return Ok(result.Value);
     }
     
-    [HttpPut("{id}"),Authorize]
+    [HttpPut("{userId}")]
     public async Task<IActionResult> SetPassword(
-        Guid id,
+        Guid userId,
         [FromBody] ResetPasswordRequest request,
         CancellationToken cancellationToken)
     {
-        var command = new SetUserPasswordCommand(id, request.Password);
+        var command = new SetUserPasswordCommand(userId, request.Password);
 
         var result = await Sender.Send(command,cancellationToken);
 
@@ -88,14 +89,32 @@ public sealed class UsersController : ApiController
         return NoContent();
     }
 
-    [HttpPut("{id}"),Authorize]
+    [HttpPut("{userId}"),Authorize]
     public async Task<IActionResult> ChangePassword(
-        Guid id,
+        Guid userId,
         [FromBody]ChangePasswordRequest request,
         CancellationToken cancellationToken)
     {
-        var command = new ChangeUserPasswordCommand(id, request.OldPassword, request.NewPassword);
+        var command = new ChangeUserPasswordCommand(userId, request.OldPassword, request.NewPassword);
 
+        var result = await Sender.Send(command, cancellationToken);
+
+        if (result.IsFailure)
+        {
+            return HandleFailure(result);
+        }
+
+        return NoContent();
+    }
+    
+    [HttpPost("{userId}"),Authorize]
+    public async Task<IActionResult> AssignRole(
+        Guid userId,
+        [FromBody]AssignRoleRequest request,
+        CancellationToken cancellationToken)
+    {
+        var command = new AssignRoleCommand(userId, request.RoleId);
+        
         var result = await Sender.Send(command, cancellationToken);
 
         if (result.IsFailure)

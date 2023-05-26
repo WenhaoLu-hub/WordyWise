@@ -11,15 +11,15 @@ public class UserLoginHistory : BaseEntity
     {
     }
 
-    public UserLoginHistory(Guid id, Guid userId, DateTime loginTime) : base(id)
+    public UserLoginHistory(Guid id, Guid userId) : base(id)
     {
         UserId = userId;
-        LoginTime = loginTime;
+        LoginTime = DateTime.UtcNow;
     }
 
-    public static UserLoginHistory Create(Guid id, Guid userId, DateTime loginTime)
+    public static UserLoginHistory Create(Guid id, Guid userId)
     {
-        var userLoginHistory = new UserLoginHistory(id, userId, loginTime);
+        var userLoginHistory = new UserLoginHistory(id, userId);
         //raise domain event if needed
         return userLoginHistory;
     }
